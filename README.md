@@ -160,30 +160,117 @@ The project uses several key configuration files:
 
 ## Deployment
 
-### GitHub Pages
+### Quick Deploy to GitHub Pages (Recommended)
 
-1. **Build the project**
-   ```bash
-   npm run build
-   ```
+Follow these steps to deploy Commit Canvas to your own GitHub Pages:
 
-2. **Deploy to GitHub Pages**
-   ```bash
-   npm run deploy
-   ```
+#### Step 1: Set up GitHub OAuth
 
-3. **Update GitHub Settings**
-   
-   In your GitHub repository settings:
-   - Set source to "Deploy from a branch"
-   - Choose `gh-pages` branch and `/` root folder
+1. Go to **GitHub Settings → Developer settings → OAuth Apps**
+2. Click **"New OAuth App"** and configure:
+   - **Application name**: Commit Canvas (or your choice)
+   - **Homepage URL**: `https://YOUR_USERNAME.github.io/commit-canvas`
+   - **Authorization callback URL**: `https://YOUR_USERNAME.github.io/commit-canvas/auth/callback`
 
-### Environment Variables for Production
+3. Copy the **Client ID** and generate a **Client Secret**
 
-For production deployment, set the GitHub OAuth callback URL to your deployment domain:
-```env
-VITE_APP_CALLBACK_URL=https://yourusername.github.io/commit-canvas/auth/callback
+> **Note**: Replace `YOUR_USERNAME` with your actual GitHub username
+
+#### Step 2: Configure Repository Secrets
+
+1. In your forked repository, go to **Settings → Secrets and variables → Actions**
+2. Add these repository secrets:
+   - `VITE_GITHUB_CLIENT_ID`: Your Client ID
+   - `VITE_GITHUB_CLIENT_SECRET`: Your Client Secret
+
+#### Step 3: Enable GitHub Pages
+
+1. Go to **Settings → Pages**
+2. Set source to **"GitHub Actions"**
+
+#### Step 4: Deploy
+
+Push any changes to the main branch to trigger the automatic deployment:
+
+```bash
+git push origin main
 ```
+
+The GitHub Action will automatically build and deploy your app to GitHub Pages.
+
+---
+
+### Manual Deployment Option
+
+If you prefer to deploy manually without GitHub Actions:
+
+#### Step 1: Create Production Environment File
+
+Copy `.env.example` to `.env.production` and update with your OAuth credentials:
+
+```bash
+cp .env.example .env.production
+```
+
+Then edit `.env.production` with your real values:
+```env
+VITE_GITHUB_CLIENT_ID=your_actual_client_id
+VITE_GITHUB_CLIENT_SECRET=your_actual_client_secret
+VITE_APP_CALLBACK_URL=https://YOUR_USERNAME.github.io/commit-canvas/auth/callback
+```
+
+#### Step 2: Build and Deploy
+
+```bash
+npm run build
+npm run deploy
+```
+
+#### Step 3: Enable GitHub Pages
+
+1. Go to **Settings → Pages** in your repository
+2. Set source to **"Deploy from a branch"**
+3. Choose the `gh-pages` branch with `/` as the root folder
+
+---
+
+### Environment Variables
+
+For any deployment method, you'll need these GitHub OAuth variables:
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `VITE_GITHUB_CLIENT_ID` | GitHub OAuth Client ID | `a1b2c3d4e5f6g7h8i9j0` |
+| `VITE_GITHUB_CLIENT_SECRET` | GitHub OAuth Client Secret | `a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6` |
+| `VITE_APP_CALLBACK_URL` | OAuth callback URL | `https://YOUR_USERNAME.github.io/commit-canvas/auth/callback` |
+
+---
+
+### Important Deployment Notes
+
+⚠️ **Security**: Never commit your OAuth secrets to your repository. Always use GitHub secrets or environment variables.
+
+🔄 **OAuth Callback**: Make sure your GitHub OAuth App callback URL exactly matches your deployed app URL.
+
+⏱️ **Deployment Time**: GitHub Pages may take 1-2 minutes to update after deployment.
+
+🌐 **Custom Domain**: You can use a custom domain by updating the OAuth callback URL and GitHub Pages settings.
+
+📱 **HTTPS Required**: GitHub OAuth requires HTTPS, so your deployment must use HTTPS (GitHub Pages provides this automatically).
+
+---
+
+### Access Your Deployed App
+
+Once deployed, your Commit Canvas instance will be available at:
+`https://YOUR_USERNAME.github.io/commit-canvas`
+
+Users visiting your deployed app can:
+- Login with their own GitHub accounts
+- Visualize their own repositories
+- Export beautiful commit visualizations
+
+No further setup required - the app works independently for each user!
 
 ## Contributing
 
