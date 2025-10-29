@@ -283,9 +283,3 @@ No further setup required - the app works independently for each user!
 ## License
 
 Apache-2.0 License
-
-## Acknowledgments
-
-- inspired by beautiful data visualization techniques
-- Built with modern web technologies
-- Thanks to the open source community for amazing libraries
