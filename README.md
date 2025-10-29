@@ -1,4 +1,4 @@
-# Commit Canvas
+# 🎨 Commit Canvas — Transform your Git commit history into generative art
 
 Transform your Git commit history into beautiful generative art visualizations.
 
