@@ -3,7 +3,11 @@
 Transform your Git commit history into beautiful generative art visualizations.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Icicle-Dash/Commit-Canvas/main/wooden_frame_art.svg" width="400">
+
+<img src="https://raw.githubusercontent.com/Icicle-Dash/Commit-Canvas/main/wooden_frame_art.svg" width="400">
+
+<p align="center"><em>(this isn't a showcase image just a placeholder)</em></p>
+
 </p>
 
 ## Overview
