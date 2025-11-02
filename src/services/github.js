@@ -25,7 +25,7 @@ class GitHubService {
   async initiateOAuth() {
     const clientId = import.meta.env.VITE_GITHUB_CLIENT_ID;
     const redirectUri = encodeURIComponent(import.meta.env.VITE_APP_CALLBACK_URL);
-    const scope = 'repo public_repo read:user user:email';
+    const scope = 'public_repo read:user user:email';
     
     const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
     return authUrl;
